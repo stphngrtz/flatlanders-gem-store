@@ -12,10 +12,18 @@
       return this.tab === checkTab;
     };
   });
-  app.controller('GalleryController', function(){
+  app.controller("GalleryController", function() {
     this.current = 0;
     this.setCurrent = function(val) {
       this.current = val || 0;
+    };
+  });
+  app.controller("ReviewController", function() {
+    this.review = {};
+    this.addReview = function(product) {
+      this.review.createdOn = Date.now();
+      product.reviews.push(this.review);
+      this.review = {};
     };
   });
   var gems = [{
@@ -32,7 +40,18 @@
       "images/gem-02.gif",
       "images/gem-05.gif",
       "images/gem-09.gif"
-    ]
+    ],
+    reviews: [{
+      stars: 5,
+      body: "I love this product!",
+      author: "joe@thomas.com",
+      createdOn: 1288323623006
+    },{
+      stars: 1,
+      body: "This product sucks",
+      author: "tim@hater.com",
+      createdOn: 1288323623006
+    }]
   },{
     name: "Bloodstone",
     description: "Origin of the Bloodstone is unknown, hence its low value. It has a very high shine and 12 sides, however.",
